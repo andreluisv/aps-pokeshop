@@ -7,8 +7,6 @@
   <title>Document</title>
 </head>
 <body>
-  Logado como <span th:text="${email}"></span>, de id: <span th:text=${id}></span><br>
-  <a href="/oferta/listar">Listar ofertas</a><br>
-  <a th:href="@{'/oferta/nova/' + ${id}}">Cadastrar Nova Carta</a>
+  Oferta "<span th:text="${titulo}"> </span>" criado com sucesso.
 </body>
 </html>
