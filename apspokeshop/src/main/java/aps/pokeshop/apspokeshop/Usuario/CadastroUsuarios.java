@@ -1,29 +1,25 @@
 package aps.pokeshop.apspokeshop.Usuario;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CadastroUsuarios {
 
-  private List<Usuario> usuarios;
+  @Autowired
+  private ICadastroUsuarios iCadastroUsuarios;
 
   public CadastroUsuarios() {
-    this.usuarios = new ArrayList<>();
-    // Mocked data
-    Usuario usr = new Usuario();
-    usr.setEmail("alpvj@cin.ufpe.br");
-    usr.setSenha("senha123");
-    this.usuarios.add(usr);
   }
 
   private List<Usuario> getUsuarios() {
-    return this.usuarios;
+    return this.iCadastroUsuarios.findAll();
   }
 
   public boolean validarCredenciais(String email, String senha) {
+    this.addMockedData();// Mocked data
     List<Usuario> lista = this.getUsuarios();
     int length = lista.size();
     for (int i = 0; i < length; i++) {
@@ -33,5 +29,14 @@ public class CadastroUsuarios {
       }
     }
     return false;
+  }
+
+  private void addMockedData() {
+    Long sz = this.iCadastroUsuarios.count();
+    if (sz > 0) return;
+    Usuario usrr = new Usuario();
+    usrr.setEmail("alpvj@cin.ufpe.br");
+    usrr.setSenha("senha123");
+    this.iCadastroUsuarios.save(usrr);
   }
 }
