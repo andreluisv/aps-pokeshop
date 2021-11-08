@@ -5,8 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Carta {
   
   @Id
@@ -17,38 +24,4 @@ public class Carta {
   private String raridade;
   private String artista;
 
-  public Carta(){
-  }
-
-  public String getPokemon(){
-    return this.pokemon;
-  }
-
-  public void setPokemon(String pokemon){
-    this.pokemon = pokemon;
-  }
-
-  public String getTipo(){
-    return this.tipo;
-  }
-
-  public void setTipo(String tipo){
-    this.tipo = tipo;
-  }
-
-  public String getRaridade(){
-    return this.raridade;
-  }
-
-  public void setRaridade(String raridade){
-    this.raridade = raridade;
-  }
-
-  public String getArtista(){
-    return this.artista;
-  }
-
-  public void setArtista(String artista){
-    this.artista = artista;
-  }
 }

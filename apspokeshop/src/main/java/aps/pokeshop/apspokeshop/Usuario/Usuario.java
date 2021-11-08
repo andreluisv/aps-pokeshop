@@ -5,7 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
   @Id
@@ -13,27 +20,4 @@ public class Usuario {
   private Long id;
   private String email;
   private String senha;
-
-  public Usuario() {
-  }
-
-  public Long getId() {
-    return this.id;
-  }
-
-  public String getEmail() {
-    return this.email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getSenha() {
-    return this.senha;
-  }
-
-  public void setSenha(String senha) {
-    this.senha = senha;
-  }
 }

@@ -53,7 +53,7 @@ public class ControladorOferta {
     oferta.setDescricao(descricao);
     oferta.setPreco(preco);
     oferta.setTitulo(titulo);
-    oferta.setcodigoCarta(codigoCarta);
+    oferta.setCodigoCarta(codigoCarta);
     this.cadastroOfertas.adicionarOferta(oferta);
 
     return true;

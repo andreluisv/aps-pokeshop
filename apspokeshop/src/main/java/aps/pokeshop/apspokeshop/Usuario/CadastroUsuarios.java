@@ -33,7 +33,6 @@ public class CadastroUsuarios {
   }
 
   public Usuario validarCredenciais(String email, String senha) {
-    this.addMockedData();// Mocked data
     List<Usuario> lista = this.getUsuarios();
     int length = lista.size();
     for (int i = 0; i < length; i++) {
@@ -45,12 +44,4 @@ public class CadastroUsuarios {
     return null;
   }
 
-  private void addMockedData() {
-    Long sz = this.iCadastroUsuarios.count();
-    if (sz > 0) return;
-    Usuario usrr = new Usuario();
-    usrr.setEmail("alpvj@cin.ufpe.br");
-    usrr.setSenha("senha123");
-    this.iCadastroUsuarios.save(usrr);
-  }
 }
