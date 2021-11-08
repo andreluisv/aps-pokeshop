@@ -12,22 +12,12 @@ public class Carta {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
-  private String titulo;
   private String pokemon;
   private String tipo;
-  private String[] fraquezas;
   private String raridade;
   private String artista;
 
   public Carta(){
-  }
-
-  public String getTitulo(){
-    return this.titulo;
-  }
-
-  public void setTitulo(String titulo){
-    this.titulo = titulo;
   }
 
   public String getPokemon(){
@@ -44,14 +34,6 @@ public class Carta {
 
   public void setTipo(String tipo){
     this.tipo = tipo;
-  }
-
-  public String[] getFraquezas(){
-    return this.fraquezas;
-  }
-
-  public void setFraquezas(String[] fraquezas){
-    this.fraquezas = fraquezas;
   }
 
   public String getRaridade(){

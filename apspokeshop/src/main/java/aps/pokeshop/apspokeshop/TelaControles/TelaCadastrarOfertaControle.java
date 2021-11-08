@@ -28,7 +28,9 @@ public class TelaCadastrarOfertaControle {
   public String telaCadastrarOferta(Model model, @PathVariable Long userId,
       @RequestParam(required = true) Map<String, String> qparams) {
 
-    boolean res = fachada.cadastrarOferta(userId, qparams.get("descricao"), Double.parseDouble(qparams.get("preco")),
+    String preco = "0";
+    if (qparams.containsKey("preco")) preco = qparams.get("preco");
+    boolean res = fachada.cadastrarOferta(userId, qparams.get("descricao"), Double.parseDouble(preco),
         qparams.get("titulo"), qparams.get("codigoCarta"));
     if (res){
       model.addAttribute("titulo", qparams.get("titulo"));
