@@ -17,10 +17,16 @@ public class ControladorOferta {
   
   @Autowired private CadastroOfertas cadastroOfertas;
   @Autowired private CadastroUsuarios cadastroUsuarios;
+  @Autowired private CadastroCartas cadastroCartas;
 
-  public ControladorOferta(CadastroOfertas cadastroOfertas, CadastroUsuarios cadastroUsuarios){
+  public ControladorOferta(CadastroOfertas cadastroOfertas, CadastroUsuarios cadastroUsuarios, CadastroCartas cadastroCartas){
     this.cadastroOfertas = cadastroOfertas;
     this.cadastroUsuarios = cadastroUsuarios;
+    this.cadastroCartas = cadastroCartas;
+  }
+
+  public CadastroCartas getCadastroCartas() {
+    return this.cadastroCartas;
   }
 
   public CadastroUsuarios getCadastroUsuarios() {
@@ -37,11 +43,11 @@ public class ControladorOferta {
 
   public boolean cadastrarOferta(Long userId, String descricao, Double preco, String titulo, String codigoCarta) {
     Optional<Usuario> proprietario = this.getCadastroUsuarios().getUserById(userId);
-    Carta carta = this.getCadastroOfertas().fetchCarta(codigoCarta);
+    Carta carta = this.getCadastroCartas().fetchCarta(codigoCarta);
     if (!proprietario.isPresent() || Objects.isNull(carta)){
       return false;
     }
-    this.cadastroOfertas.adicionarCarta(carta);
+    this.getCadastroCartas().adicionarCarta(carta);
     
     Oferta oferta = new Oferta(carta, proprietario.get());
     oferta.setDescricao(descricao);

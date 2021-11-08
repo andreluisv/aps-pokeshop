@@ -10,10 +10,6 @@ public class CadastroOfertas {
 
   @Autowired
   private ICadastroOfertas iCadastroOfertas;
-  @Autowired
-  private ICadastroCartas iCadastroCartas;
-  @Autowired
-  private ISubsistemaComunicacaoPokemonTCGAPI iSubsistemaComunicacaoPokemonTCGAPI;
 
   public CadastroOfertas() {
   }
@@ -24,14 +20,6 @@ public class CadastroOfertas {
 
   public void adicionarOferta(Oferta oferta) {
     this.iCadastroOfertas.save(oferta);
-  }
-
-  public void adicionarCarta(Carta carta){
-    this.iCadastroCartas.save(carta);
-  }
-
-  public Carta fetchCarta(String codigo){
-    return this.iSubsistemaComunicacaoPokemonTCGAPI.fetchCarta(codigo);
   }
 
   // TODO: getInstance() CadastroOfertas singleton
