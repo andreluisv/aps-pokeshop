@@ -9,6 +9,7 @@ import aps.pokeshop.apspokeshop.Usuario.Usuario;
 import aps.pokeshop.apspokeshop.Oferta.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -36,20 +37,10 @@ public class ControladorOferta {
 
   public boolean cadastrarOferta(Long userId, String descricao, Double preco, String titulo, String codigoCarta) {
     Optional<Usuario> proprietario = this.getCadastroUsuarios().getUserById(userId);
-    if (!proprietario.isPresent()){
+    Carta carta = this.getCadastroOfertas().fetchCarta(codigoCarta);
+    if (!proprietario.isPresent() || Objects.isNull(carta)){
       return false;
     }
-    Carta carta = new Carta();
-    // TODO API com o codigoCarta
-    String[] fraquezas = new String[1];
-    fraquezas[0] = "fraquesa 1 da carta";
-    carta.setFraquezas(fraquezas);
-    carta.setPokemon("pokemonDaCarta");
-    carta.setRaridade("raridadeDaCarta");
-    carta.setTipo("tipoDaCarta");
-    carta.setTitulo("tituloDaCarta");
-    carta.setArtista("artistaDaCarta");
-    // API com o codigoCarta
     this.cadastroOfertas.adicionarCarta(carta);
     
     Oferta oferta = new Oferta(carta, proprietario.get());

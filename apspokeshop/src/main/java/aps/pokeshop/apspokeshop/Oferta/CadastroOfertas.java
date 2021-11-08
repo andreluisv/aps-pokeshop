@@ -12,6 +12,8 @@ public class CadastroOfertas {
   private ICadastroOfertas iCadastroOfertas;
   @Autowired
   private ICadastroCartas iCadastroCartas;
+  @Autowired
+  private ISubsistemaComunicacaoPokemonTCGAPI iSubsistemaComunicacaoPokemonTCGAPI;
 
   public CadastroOfertas() {
   }
@@ -28,5 +30,9 @@ public class CadastroOfertas {
     this.iCadastroCartas.save(carta);
   }
 
-  // TODO: getInstance() CadastroOfertas
+  public Carta fetchCarta(String codigo){
+    return this.iSubsistemaComunicacaoPokemonTCGAPI.fetchCarta(codigo);
+  }
+
+  // TODO: getInstance() CadastroOfertas singleton
 }
