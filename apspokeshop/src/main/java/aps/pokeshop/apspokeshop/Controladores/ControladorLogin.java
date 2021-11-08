@@ -11,8 +11,8 @@ public class ControladorLogin {
 
   @Autowired private CadastroUsuarios cadastroUsuarios;
 
-  public ControladorLogin(CadastroUsuarios cadastroUsuarios){
-    this.cadastroUsuarios = cadastroUsuarios;
+  public ControladorLogin(){
+    this.cadastroUsuarios = CadastroUsuarios.getInstance();
   }
   
   private CadastroUsuarios getCadastroUsuarios(){

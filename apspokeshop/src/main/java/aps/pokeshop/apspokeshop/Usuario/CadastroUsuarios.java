@@ -12,6 +12,15 @@ public class CadastroUsuarios {
   @Autowired
   private ICadastroUsuarios iCadastroUsuarios;
 
+  public static CadastroUsuarios instance;
+  public static CadastroUsuarios getInstance() {
+    if (instance == null){
+      instance = new CadastroUsuarios();
+    }
+    
+    return instance;
+  }
+
   public CadastroUsuarios() {
   }
 

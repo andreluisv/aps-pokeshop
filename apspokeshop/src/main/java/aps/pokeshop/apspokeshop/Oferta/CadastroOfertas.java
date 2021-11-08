@@ -11,6 +11,15 @@ public class CadastroOfertas {
   @Autowired
   private ICadastroOfertas iCadastroOfertas;
 
+  public static CadastroOfertas instance;
+  public static CadastroOfertas getInstance() {
+    if (instance == null){
+      instance = new CadastroOfertas();
+    }
+
+    return instance;
+  }
+
   public CadastroOfertas() {
   }
 
@@ -22,5 +31,4 @@ public class CadastroOfertas {
     this.iCadastroOfertas.save(oferta);
   }
 
-  // TODO: getInstance() CadastroOfertas singleton
 }

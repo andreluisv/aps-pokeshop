@@ -19,10 +19,10 @@ public class ControladorOferta {
   @Autowired private CadastroUsuarios cadastroUsuarios;
   @Autowired private CadastroCartas cadastroCartas;
 
-  public ControladorOferta(CadastroOfertas cadastroOfertas, CadastroUsuarios cadastroUsuarios, CadastroCartas cadastroCartas){
-    this.cadastroOfertas = cadastroOfertas;
-    this.cadastroUsuarios = cadastroUsuarios;
-    this.cadastroCartas = cadastroCartas;
+  public ControladorOferta(){
+    this.cadastroOfertas = CadastroOfertas.getInstance();
+    this.cadastroUsuarios = CadastroUsuarios.getInstance();
+    this.cadastroCartas = CadastroCartas.getInstance();
   }
 
   public CadastroCartas getCadastroCartas() {
