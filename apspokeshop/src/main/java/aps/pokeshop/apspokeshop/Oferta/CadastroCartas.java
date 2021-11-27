@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class CadastroCartas {
 
   @Autowired
-  private ICadastroCartas iCadastroCartas;
+  private IRepositorioCartas iCadastroCartas;
   @Autowired
   private ISubsistemaComunicacaoPokemonTCGAPI iSubsistemaComunicacaoPokemonTCGAPI;
 

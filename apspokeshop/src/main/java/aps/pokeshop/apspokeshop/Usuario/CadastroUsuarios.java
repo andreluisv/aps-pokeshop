@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class CadastroUsuarios {
 
   @Autowired
-  private ICadastroUsuarios iCadastroUsuarios;
+  private IRepositorioUsuarios iCadastroUsuarios;
 
   public static CadastroUsuarios instance;
   public static CadastroUsuarios getInstance() {
