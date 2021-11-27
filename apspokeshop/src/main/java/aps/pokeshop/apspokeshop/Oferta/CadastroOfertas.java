@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class CadastroOfertas {
 
   @Autowired
-  private ICadastroOfertas iCadastroOfertas;
+  private IRepositorioOfertas iCadastroOfertas;
 
   public static CadastroOfertas instance;
   public static CadastroOfertas getInstance() {
