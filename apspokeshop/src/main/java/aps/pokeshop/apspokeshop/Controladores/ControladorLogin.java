@@ -10,10 +10,6 @@ import aps.pokeshop.apspokeshop.Usuario.Usuario;
 public class ControladorLogin {
 
   @Autowired private CadastroUsuarios cadastroUsuarios;
-
-  public ControladorLogin(){
-    this.cadastroUsuarios = CadastroUsuarios.getInstance();
-  }
   
   private CadastroUsuarios getCadastroUsuarios(){
     return this.cadastroUsuarios;

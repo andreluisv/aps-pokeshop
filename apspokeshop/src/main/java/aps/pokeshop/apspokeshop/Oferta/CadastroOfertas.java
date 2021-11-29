@@ -11,15 +11,6 @@ public class CadastroOfertas {
   @Autowired
   private IRepositorioOfertas iCadastroOfertas;
 
-  public static CadastroOfertas instance;
-  public static CadastroOfertas getInstance() {
-    if (instance == null){
-      instance = new CadastroOfertas();
-    }
-
-    return instance;
-  }
-
   public CadastroOfertas() {
   }
 

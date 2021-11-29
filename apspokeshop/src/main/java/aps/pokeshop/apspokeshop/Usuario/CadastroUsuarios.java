@@ -12,23 +12,11 @@ public class CadastroUsuarios {
   @Autowired
   private IRepositorioUsuarios iCadastroUsuarios;
 
-  public static CadastroUsuarios instance;
-  public static CadastroUsuarios getInstance() {
-    if (instance == null){
-      instance = new CadastroUsuarios();
-    }
-    
-    return instance;
-  }
-
-  public CadastroUsuarios() {
-  }
-
   private List<Usuario> getUsuarios() {
     return this.iCadastroUsuarios.findAll();
   }
 
-  public Optional<Usuario> getUserById(Long id){
+  public Optional<Usuario> getUserById(Long id) {
     return this.iCadastroUsuarios.findById(id);
   }
 
