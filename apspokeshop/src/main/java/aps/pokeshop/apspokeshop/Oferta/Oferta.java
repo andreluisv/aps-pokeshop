@@ -26,8 +26,6 @@ public class Oferta {
   private String titulo;
   private String descricao;
   private double preco;
-  @Autowired
-  @OneToOne
   private Carta carta;
   @Autowired
   @ManyToOne

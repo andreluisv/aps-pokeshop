@@ -14,13 +14,16 @@ import java.util.Optional;
 
 @Component
 public class ControladorOferta {
-  
-  @Autowired private CadastroOfertas cadastroOfertas;
-  @Autowired private CadastroUsuarios cadastroUsuarios;
-  @Autowired private CadastroCartas cadastroCartas;
 
-  public CadastroCartas getCadastroCartas() {
-    return this.cadastroCartas;
+  @Autowired
+  private CadastroOfertas cadastroOfertas;
+  @Autowired
+  private CadastroUsuarios cadastroUsuarios;
+  @Autowired
+  private ISubsistemaComunicacaoPokemonTCGAPI iSubsistemaComunicacaoPokemonTCGAPI;
+
+  public ISubsistemaComunicacaoPokemonTCGAPI getISubsistemaComunicacaoPokemonTCGAPI() {
+    return this.iSubsistemaComunicacaoPokemonTCGAPI;
   }
 
   public CadastroUsuarios getCadastroUsuarios() {
@@ -37,12 +40,10 @@ public class ControladorOferta {
 
   public boolean cadastrarOferta(CadastroOfertaDTO dto) {
     Optional<Usuario> proprietario = this.getCadastroUsuarios().getUserById(dto.getUserId());
-    Carta carta = this.getCadastroCartas().fetchCarta(dto.getCodigoCarta());
-    if (!proprietario.isPresent() || Objects.isNull(carta)){
+    Carta carta = this.getISubsistemaComunicacaoPokemonTCGAPI().fetchCarta(dto.getCodigoCarta());
+    if (!proprietario.isPresent() || Objects.isNull(carta))
       return false;
-    }
-    this.getCadastroCartas().adicionarCarta(carta);
-    
+
     Oferta oferta = new Oferta(carta, proprietario.get());
     oferta.setDescricao(dto.getDescricao());
     oferta.setPreco(dto.getPreco());
@@ -53,4 +54,3 @@ public class ControladorOferta {
     return true;
   }
 }
-
