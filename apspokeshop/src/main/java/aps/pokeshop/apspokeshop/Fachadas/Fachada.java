@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import aps.pokeshop.apspokeshop.Controladores.ControladorLogin;
 import aps.pokeshop.apspokeshop.Controladores.ControladorOferta;
+import aps.pokeshop.apspokeshop.Oferta.CadastroOfertaDTO;
 import aps.pokeshop.apspokeshop.Oferta.Oferta;
 import aps.pokeshop.apspokeshop.Usuario.Usuario;
 
@@ -18,9 +19,9 @@ public class Fachada {
   public Usuario efetuarLogin(String email, String senha){
     return this.controladorLogin.efetuarLogin(email, senha);
   }
-
-  public boolean cadastrarOferta(Long userId, String descricao, Double preco, String titulo, String codigoCarta){
-    return this.controladorOferta.cadastrarOferta(userId, descricao, preco, titulo, codigoCarta);
+  
+  public boolean cadastrarOferta(CadastroOfertaDTO dto){
+    return this.controladorOferta.cadastrarOferta(dto);
   }
 
   public List<Oferta> recuperarOfertas(){

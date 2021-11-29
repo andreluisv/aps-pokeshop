@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import aps.pokeshop.apspokeshop.Fachadas.Fachada;
+import aps.pokeshop.apspokeshop.Oferta.CadastroOfertaDTO;
 
 @Controller
 public class TelaCadastrarOfertaControle {
@@ -29,10 +30,12 @@ public class TelaCadastrarOfertaControle {
       @RequestParam(required = true) Map<String, String> qparams) {
 
     String preco = "0";
-    if (qparams.containsKey("preco")) preco = qparams.get("preco");
-    boolean res = fachada.cadastrarOferta(userId, qparams.get("descricao"), Double.parseDouble(preco),
+    if (qparams.containsKey("preco"))
+      preco = qparams.get("preco");
+    CadastroOfertaDTO dto = new CadastroOfertaDTO(userId, qparams.get("descricao"), Double.parseDouble(preco),
         qparams.get("titulo"), qparams.get("codigoCarta"));
-    if (res){
+    boolean res = fachada.cadastrarOferta(dto);
+    if (res) {
       model.addAttribute("titulo", qparams.get("titulo"));
       return "success_oferta";
     }

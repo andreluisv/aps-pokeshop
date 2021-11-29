@@ -41,19 +41,19 @@ public class ControladorOferta {
     return this.cadastroOfertas.recuperarOfertas();
   }
 
-  public boolean cadastrarOferta(Long userId, String descricao, Double preco, String titulo, String codigoCarta) {
-    Optional<Usuario> proprietario = this.getCadastroUsuarios().getUserById(userId);
-    Carta carta = this.getCadastroCartas().fetchCarta(codigoCarta);
+  public boolean cadastrarOferta(CadastroOfertaDTO dto) {
+    Optional<Usuario> proprietario = this.getCadastroUsuarios().getUserById(dto.getUserId());
+    Carta carta = this.getCadastroCartas().fetchCarta(dto.getCodigoCarta());
     if (!proprietario.isPresent() || Objects.isNull(carta)){
       return false;
     }
     this.getCadastroCartas().adicionarCarta(carta);
     
     Oferta oferta = new Oferta(carta, proprietario.get());
-    oferta.setDescricao(descricao);
-    oferta.setPreco(preco);
-    oferta.setTitulo(titulo);
-    oferta.setCodigoCarta(codigoCarta);
+    oferta.setDescricao(dto.getDescricao());
+    oferta.setPreco(dto.getPreco());
+    oferta.setTitulo(dto.getTitulo());
+    oferta.setCodigoCarta(dto.getCodigoCarta());
     this.cadastroOfertas.adicionarOferta(oferta);
 
     return true;
