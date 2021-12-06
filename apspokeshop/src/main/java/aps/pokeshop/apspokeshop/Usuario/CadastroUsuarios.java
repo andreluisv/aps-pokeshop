@@ -6,11 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import aps.pokeshop.apspokeshop.Factories.FabricaRepositorioBDR;
+import aps.pokeshop.apspokeshop.Factories.IFabricaAbstrataRepositorio;
+
 @Component
 public class CadastroUsuarios {
 
+  private IFabricaAbstrataRepositorio iFabricaAbstrataRepositorio = new FabricaRepositorioBDR();
+
   @Autowired
-  private IRepositorioUsuarios iCadastroUsuarios;
+  private IRepositorioUsuarios iCadastroUsuarios = iFabricaAbstrataRepositorio.CriarRepositorioUsuarios();
 
   private List<Usuario> getUsuarios() {
     return this.iCadastroUsuarios.findAll();
