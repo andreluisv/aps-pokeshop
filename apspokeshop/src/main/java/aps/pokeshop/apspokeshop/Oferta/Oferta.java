@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,8 +25,6 @@ public class Oferta {
   private String titulo;
   private String descricao;
   private double preco;
-  @Autowired
-  @OneToOne
   private Carta carta;
   @Autowired
   @ManyToOne

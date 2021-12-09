@@ -6,29 +6,22 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import aps.pokeshop.apspokeshop.Factories.FabricaRepositorioBDR;
+import aps.pokeshop.apspokeshop.Factories.IFabricaAbstrataRepositorio;
+
 @Component
 public class CadastroUsuarios {
 
+  private IFabricaAbstrataRepositorio iFabricaAbstrataRepositorio = new FabricaRepositorioBDR();
+
   @Autowired
-  private ICadastroUsuarios iCadastroUsuarios;
-
-  public static CadastroUsuarios instance;
-  public static CadastroUsuarios getInstance() {
-    if (instance == null){
-      instance = new CadastroUsuarios();
-    }
-    
-    return instance;
-  }
-
-  public CadastroUsuarios() {
-  }
+  private IRepositorioUsuarios iCadastroUsuarios = iFabricaAbstrataRepositorio.CriarRepositorioUsuarios();
 
   private List<Usuario> getUsuarios() {
     return this.iCadastroUsuarios.findAll();
   }
 
-  public Optional<Usuario> getUserById(Long id){
+  public Optional<Usuario> getUserById(Long id) {
     return this.iCadastroUsuarios.findById(id);
   }
 

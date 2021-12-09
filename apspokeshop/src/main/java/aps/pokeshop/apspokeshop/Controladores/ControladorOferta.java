@@ -14,19 +14,16 @@ import java.util.Optional;
 
 @Component
 public class ControladorOferta {
-  
-  @Autowired private CadastroOfertas cadastroOfertas;
-  @Autowired private CadastroUsuarios cadastroUsuarios;
-  @Autowired private CadastroCartas cadastroCartas;
 
-  public ControladorOferta(){
-    this.cadastroOfertas = CadastroOfertas.getInstance();
-    this.cadastroUsuarios = CadastroUsuarios.getInstance();
-    this.cadastroCartas = CadastroCartas.getInstance();
-  }
+  @Autowired
+  private CadastroOfertas cadastroOfertas;
+  @Autowired
+  private CadastroUsuarios cadastroUsuarios;
+  @Autowired
+  private ISubsistemaComunicacaoPokemonTCGAPI iSubsistemaComunicacaoPokemonTCGAPI;
 
-  public CadastroCartas getCadastroCartas() {
-    return this.cadastroCartas;
+  public ISubsistemaComunicacaoPokemonTCGAPI getISubsistemaComunicacaoPokemonTCGAPI() {
+    return this.iSubsistemaComunicacaoPokemonTCGAPI;
   }
 
   public CadastroUsuarios getCadastroUsuarios() {
@@ -41,22 +38,19 @@ public class ControladorOferta {
     return this.cadastroOfertas.recuperarOfertas();
   }
 
-  public boolean cadastrarOferta(Long userId, String descricao, Double preco, String titulo, String codigoCarta) {
-    Optional<Usuario> proprietario = this.getCadastroUsuarios().getUserById(userId);
-    Carta carta = this.getCadastroCartas().fetchCarta(codigoCarta);
-    if (!proprietario.isPresent() || Objects.isNull(carta)){
+  public boolean cadastrarOferta(CadastroOfertaDTO dto) {
+    Optional<Usuario> proprietario = this.getCadastroUsuarios().getUserById(dto.getUserId());
+    Carta carta = this.getISubsistemaComunicacaoPokemonTCGAPI().fetchCarta(dto.getCodigoCarta());
+    if (!proprietario.isPresent() || Objects.isNull(carta))
       return false;
-    }
-    this.getCadastroCartas().adicionarCarta(carta);
-    
+
     Oferta oferta = new Oferta(carta, proprietario.get());
-    oferta.setDescricao(descricao);
-    oferta.setPreco(preco);
-    oferta.setTitulo(titulo);
-    oferta.setCodigoCarta(codigoCarta);
+    oferta.setDescricao(dto.getDescricao());
+    oferta.setPreco(dto.getPreco());
+    oferta.setTitulo(dto.getTitulo());
+    oferta.setCodigoCarta(dto.getCodigoCarta());
     this.cadastroOfertas.adicionarOferta(oferta);
 
     return true;
   }
 }
-
