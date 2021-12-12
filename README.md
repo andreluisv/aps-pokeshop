@@ -5,5 +5,7 @@ O Pokeshop é uma aplicação para ajudar pessoas a vender e comprar cartas de p
 
 ## Entregas
 - [Descrição da equipe, escopo do projeto e casos de usos a serem trabalhados](https://docs.google.com/document/d/1a0VwFsiX9OmZsXnkXJomK4IQiKDPnfu33Mu5f9UsE58/edit?usp=sharing)
-- [Projeto - Arquitetura RUP](https://github.com/andreluisv/aps-pokeshop/tree/main/apspokeshop)
+- [Projeto - Arquitetura RUP](https://github.com/andreluisv/aps-pokeshop/tree/main/apspokeshop-rup)
 - [Slides de Apresentação da Entrega 2](https://docs.google.com/presentation/d/1S14ToXmCWmXgXrRutTKSucL5DDT_d91vFT9FpF0t8Tw/edit?usp=sharing)
+- [Projeto - Arquitetura SOA](https://github.com/andreluisv/aps-pokeshop/tree/main/apspokeshop-soa)
+- [Slides de Apresentação da Entrega 3](https://docs.google.com/presentation/d/1bw3jk2bsB0L8c6yEIZaHzY-JnLBDM6ob0fmLnVBPptY/edit?usp=sharing)
