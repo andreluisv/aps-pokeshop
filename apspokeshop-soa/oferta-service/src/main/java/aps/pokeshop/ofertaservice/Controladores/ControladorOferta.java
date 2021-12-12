@@ -1,11 +1,8 @@
 package aps.pokeshop.ofertaservice.Controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import aps.pokeshop.ofertaservice.Oferta.CadastroOfertas;
 import aps.pokeshop.ofertaservice.Oferta.*;
@@ -20,11 +17,11 @@ public class ControladorOferta {
   private CadastroOfertas cadastroOfertas;
   @Autowired
   private ISubsistemaComunicacaoPokemonTCGAPI iSubsistemaComunicacaoPokemonTCGAPI;
+  @Autowired
+  WebClient.Builder wBuilder;
 
-  private final RestTemplate restTemplate;
-
-  public ControladorOferta(RestTemplateBuilder restTemplateBuilder) {
-    this.restTemplate = restTemplateBuilder.build();
+  private WebClient client() {
+    return wBuilder.baseUrl("lb://usuario").build();
   }
 
   public ISubsistemaComunicacaoPokemonTCGAPI getISubsistemaComunicacaoPokemonTCGAPI() {
@@ -40,14 +37,13 @@ public class ControladorOferta {
   }
 
   public boolean cadastrarOferta(CadastroOfertaDTO dto) {
-    // lb://usuario
-    ResponseEntity<String> req = this.restTemplate
-        .exchange("http://localhost:8083/usuario?id=" + dto.getUserId().toString(), HttpMethod.GET, null, String.class);
+    String email = client().get().uri("/usuario?id=" + dto.getUserId().toString()).retrieve().bodyToMono(String.class)
+        .block();
     Carta carta = this.getISubsistemaComunicacaoPokemonTCGAPI().fetchCarta(dto.getCodigoCarta());
-    if (!req.hasBody() || req.getBody().length() == 0 || Objects.isNull(carta))
+    if (email == null || email.length() == 0 || Objects.isNull(carta))
       return false;
 
-    Oferta oferta = new Oferta(carta, dto.getUserId(), req.getBody());
+    Oferta oferta = new Oferta(carta, dto.getUserId(), email);
     oferta.setDescricao(dto.getDescricao());
     oferta.setPreco(dto.getPreco());
     oferta.setTitulo(dto.getTitulo());
