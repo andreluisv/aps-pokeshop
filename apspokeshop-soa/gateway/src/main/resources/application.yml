@@ -1,0 +1,20 @@
+server:
+    port: 8085
+eureka:
+  client:
+      service-url:
+          defaultZone: http://discovery:8761/eureka/
+spring:
+    application:
+      name: gateway
+    cloud:
+        gateway:
+            routes:
+                - id: usuario
+                  uri: lb://usuario
+                  predicates:
+                  - Path=/usuario/**
+                - id: oferta
+                  uri: lb://oferta
+                  predicates:
+                    - Path=/oferta/**
