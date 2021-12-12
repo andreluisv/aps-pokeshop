@@ -40,6 +40,7 @@ public class ControladorOferta {
   }
 
   public boolean cadastrarOferta(CadastroOfertaDTO dto) {
+    // lb://usuario
     ResponseEntity<String> req = this.restTemplate
         .exchange("http://localhost:8083/usuario?id=" + dto.getUserId().toString(), HttpMethod.GET, null, String.class);
     Carta carta = this.getISubsistemaComunicacaoPokemonTCGAPI().fetchCarta(dto.getCodigoCarta());
