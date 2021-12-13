@@ -1,19 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pokeshop</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    form {
+      background-color: #FCCF00;
+      border-radius: 5rem;
+      height: 20rem;
+      width: 30rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .input-label {
+      display: flex;
+      flex-direction: row;
+      line-height: 1rem;
+    }
+
+    label {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 28px;
+      margin-right: 2rem;
+    }
+
+    input {
+      margin-bottom: 0.7rem;
+    }
+  </style>
 </head>
+
 <body>
-  <form action="http://localhost:8085/usuario/login/logar">
-    <label for="fname">Email:</label><br>
-    <input type="text" id="email" name="email"><br>
-    <label for="lname">Senha:</label><br>
-    <input type="password" id="senha" name="senha"><br><br>
-    <input type="submit" value="Login">
-  </form>
-  <span style="color: red;" th:text="${fail}"></span>
+  <div class="container">
+    <form action="http://localhost:8085/usuario/login/logar">
+      <h2>Login</h2>
+      <div class="input-label">
+        <label for="fname">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+      </div>
+      <div class="input-label">
+        <label for="lname">Senha:</label><br>
+        <input type="password" id="senha" name="senha"><br><br>
+      </div>
+
+      <input type="submit" value="Login">
+      <span style="color: red; font-weight: bold;" th:text="${fail}"></span>
+    </form>
+  </div>
 </body>
+
 </html>

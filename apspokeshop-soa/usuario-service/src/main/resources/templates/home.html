@@ -1,14 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pokeshop</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    #top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #login {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 3rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+    }
+
+    h1 {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 4.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    #bot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #listar {
+      width: 14rem;
+      height: 4.5rem;
+      margin-right: 1.5rem;
+
+      background: #FCCF00;
+      border-radius: 1rem;
+      padding: 0;
+      display: inline-block;
+      line-height: 4.5rem;
+      text-align: center;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: none;
+      color: black;
+      font-size: 1.75rem;
+    }
+
+    #adicionar {
+      width: 4.3rem;
+      height: 4.3rem;
+
+      background: #22BC22;
+      border-radius: 1rem;
+      margin-bottom: 8rem;
+      padding: 0;
+      display: inline-block;
+      line-height: 4.3rem;
+      text-align: center;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: none;
+      color: black;
+      font-size: 1.75rem;
+    }
+  </style>
 </head>
+
 <body>
-  Logado como <span th:text="${email}"></span>, de id: <span th:text=${id}></span><br>
-  <a href="http://localhost:8085/oferta/listar">Listar ofertas</a><br>
-  <a th:href="@{'http://localhost:8085/oferta/nova/' + ${id}}">Cadastrar uma nova oferta de carta</a>
+  <div class="container">
+    <div id="top">
+      <h1>Pokeshop</h1>
+      <p id="login">
+        Logado como <span th:text="${email}"></span>, de id: <span th:text=${id}></span><br>
+      </p>
+    </div>
+    <div id="bot">
+      <h1>Ofertas</h1>
+      <div class="buttons">
+        <a id="listar" href="http://localhost:8085/oferta/listar">Listar ofertas</a><br>
+        <a id="adicionar" th:href="@{'http://localhost:8085/oferta/nova/' + ${id}}">+</a>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
