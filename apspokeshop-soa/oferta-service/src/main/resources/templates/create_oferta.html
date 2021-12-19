@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokeshop</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    form {
+      background-color: #2468B1;
+      border-radius: 5rem;
+      height: 30rem;
+      width: 50rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+    }
+
+    .input-label {
+      display: flex;
+      flex-direction: row;
+      line-height: 1rem;
+    }
+
+    label {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 28px;
+      margin-right: 2rem;
+    }
+
+    input {
+      margin-bottom: 0.7rem;
+    }
+
+    .container-2 {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 2rem;
+    }
+
+    #right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form action="#" th:action="@{'http://localhost:8085/oferta/nova/' + ${userId}}" method="post">
+      <h1>Cadastrar Oferta</h1>
+      <div class="container-2">
+        <div id="left">
+          <div class="input-label">
+            <label for="titulo">Titulo:</label>
+            <input type="text" id="titulo" name="titulo">
+          </div>
+          <div class="input-label">
+            <label for="preco">Preco:</label>
+            <input type="number" step="0.01" id="preco" name="preco">
+          </div>
+          <div class="input-label">
+            <label for="codigoCarta">Codigo:</label>
+            <input type="text" id="codigoCarta" name="codigoCarta">
+          </div>
+        </div>
+        <div id="right">
+          <label for="descricao">Descricao:</label>
+          <textarea type="text" id="descricao" name="descricao" rows="6" cols="30">
+          </textarea>
+          <br><br>
+          <input type="submit" value="Submit">
+        </div>
+      </div>
+      <span style="color: red;" th:text="${fail}"></span>
+    </form>
+  </div>
+</body>
+
+</html>
